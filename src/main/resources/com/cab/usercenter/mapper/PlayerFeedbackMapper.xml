@@ -22,114 +22,97 @@
     id, fb_id, user_id, client_id, username, user_source, status, message, created_at, 
     updated_at, reserved_field1, reserved_field2, reserved_field3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_player_feedback_kbapp
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteById" parameterType="java.lang.Long">
     delete from sys_player_feedback_kbapp
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.cab.usercenter.entity.PlayerFeedback">
-    insert into sys_player_feedback_kbapp (id, fb_id, user_id, 
-      client_id, username, user_source, 
-      status, message, created_at, 
-      updated_at, reserved_field1, reserved_field2, 
-      reserved_field3)
-    values (#{id,jdbcType=BIGINT}, #{fbId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{clientId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userSource,jdbcType=VARCHAR}, 
-      #{status,jdbcType=TINYINT}, #{message,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{reservedField1,jdbcType=VARCHAR}, #{reservedField2,jdbcType=VARCHAR}, 
-      #{reservedField3,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cab.usercenter.entity.PlayerFeedback">
     insert into sys_player_feedback_kbapp
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != ''">
         fb_id,
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId != ''">
         user_id,
       </if>
-      <if test="clientId != null">
+      <if test="clientId != null and clientId != ''">
         client_id,
       </if>
-      <if test="username != null">
+      <if test="username != null and username != ''">
         username,
       </if>
-      <if test="userSource != null">
+      <if test="userSource != null and userSource != ''">
         user_source,
       </if>
-      <if test="status != null">
+      <if test="status != null and status != ''">
         status,
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         message,
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         created_at,
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         updated_at,
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         reserved_field1,
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         reserved_field2,
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         reserved_field3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != ''">
         #{fbId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId != ''">
         #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="clientId != null">
+      <if test="clientId != null and clientId != ''">
         #{clientId,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
+      <if test="username != null and username != ''">
         #{username,jdbcType=VARCHAR},
       </if>
-      <if test="userSource != null">
+      <if test="userSource != null and userSource != ''">
         #{userSource,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
+      <if test="status != null and status != ''">
         #{status,jdbcType=TINYINT},
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         #{reservedField1,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         #{reservedField2,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         #{reservedField3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cab.usercenter.entity.PlayerFeedback">
+  <update id="updateById" parameterType="com.cab.usercenter.entity.PlayerFeedback">
     update sys_player_feedback_kbapp
     <set>
       <if test="fbId != null">
@@ -169,22 +152,6 @@
         reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cab.usercenter.entity.PlayerFeedback">
-    update sys_player_feedback_kbapp
-    set fb_id = #{fbId,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=VARCHAR},
-      client_id = #{clientId,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      user_source = #{userSource,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      message = #{message,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
-      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
-      reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

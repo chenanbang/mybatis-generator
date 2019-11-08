@@ -19,137 +19,110 @@
     id, reply_id, cs_name, message, created_at, updated_at, fb_id, reserved_field1, reserved_field2, 
     reserved_field3
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_cs_reply_kbapp
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteById" parameterType="java.lang.Long">
     delete from sys_cs_reply_kbapp
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.cab.usercenter.entity.CsReply">
-    insert into sys_cs_reply_kbapp (id, reply_id, cs_name, 
-      message, created_at, updated_at, 
-      fb_id, reserved_field1, reserved_field2, 
-      reserved_field3)
-    values (#{id,jdbcType=BIGINT}, #{replyId,jdbcType=VARCHAR}, #{csName,jdbcType=VARCHAR}, 
-      #{message,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
-      #{fbId,jdbcType=VARCHAR}, #{reservedField1,jdbcType=VARCHAR}, #{reservedField2,jdbcType=VARCHAR}, 
-      #{reservedField3,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cab.usercenter.entity.CsReply">
     insert into sys_cs_reply_kbapp
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="replyId != null">
+      <if test="replyId != null and replyId != ''">
         reply_id,
       </if>
-      <if test="csName != null">
+      <if test="csName != null and csName != ''">
         cs_name,
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         message,
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         created_at,
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         updated_at,
       </if>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != '' ">
         fb_id,
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         reserved_field1,
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         reserved_field2,
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         reserved_field3,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="replyId != null">
+      <if test="replyId != null and replyId != ''">
         #{replyId,jdbcType=VARCHAR},
       </if>
-      <if test="csName != null">
+      <if test="csName != null and csName != ''">
         #{csName,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != ''">
         #{fbId,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         #{reservedField1,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         #{reservedField2,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         #{reservedField3,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cab.usercenter.entity.CsReply">
+  <update id="updateById" parameterType="com.cab.usercenter.entity.CsReply">
     update sys_cs_reply_kbapp
     <set>
-      <if test="replyId != null">
+      <if test="replyId != null and replyId != ''">
         reply_id = #{replyId,jdbcType=VARCHAR},
       </if>
-      <if test="csName != null">
+      <if test="csName != null and csName != ''">
         cs_name = #{csName,jdbcType=VARCHAR},
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         message = #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         created_at = #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != ''">
         fb_id = #{fbId,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.cab.usercenter.entity.CsReply">
-    update sys_cs_reply_kbapp
-    set reply_id = #{replyId,jdbcType=VARCHAR},
-      cs_name = #{csName,jdbcType=VARCHAR},
-      message = #{message,jdbcType=VARCHAR},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
-      fb_id = #{fbId,jdbcType=VARCHAR},
-      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
-      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
-      reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+
 </mapper>
