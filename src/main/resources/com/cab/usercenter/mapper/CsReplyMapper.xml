@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cab.usercenter.mapper.CsReplyMapper">
+  <resultMap id="BaseResultMap" type="com.cab.usercenter.entity.CsReply">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="reply_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cs_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="message" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updated_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="fb_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserved_field1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserved_field2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserved_field3" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, reply_id, cs_name, message, created_at, updated_at, fb_id, reserved_field1, reserved_field2, 
+    reserved_field3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_cs_reply_kbapp
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_cs_reply_kbapp
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cab.usercenter.entity.CsReply">
+    insert into sys_cs_reply_kbapp (id, reply_id, cs_name, 
+      message, created_at, updated_at, 
+      fb_id, reserved_field1, reserved_field2, 
+      reserved_field3)
+    values (#{id,jdbcType=BIGINT}, #{replyId,jdbcType=VARCHAR}, #{csName,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{fbId,jdbcType=VARCHAR}, #{reservedField1,jdbcType=VARCHAR}, #{reservedField2,jdbcType=VARCHAR}, 
+      #{reservedField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cab.usercenter.entity.CsReply">
+    insert into sys_cs_reply_kbapp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="replyId != null">
+        reply_id,
+      </if>
+      <if test="csName != null">
+        cs_name,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="fbId != null">
+        fb_id,
+      </if>
+      <if test="reservedField1 != null">
+        reserved_field1,
+      </if>
+      <if test="reservedField2 != null">
+        reserved_field2,
+      </if>
+      <if test="reservedField3 != null">
+        reserved_field3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="replyId != null">
+        #{replyId,jdbcType=VARCHAR},
+      </if>
+      <if test="csName != null">
+        #{csName,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fbId != null">
+        #{fbId,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField1 != null">
+        #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null">
+        #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null">
+        #{reservedField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cab.usercenter.entity.CsReply">
+    update sys_cs_reply_kbapp
+    <set>
+      <if test="replyId != null">
+        reply_id = #{replyId,jdbcType=VARCHAR},
+      </if>
+      <if test="csName != null">
+        cs_name = #{csName,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fbId != null">
+        fb_id = #{fbId,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField1 != null">
+        reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null">
+        reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null">
+        reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cab.usercenter.entity.CsReply">
+    update sys_cs_reply_kbapp
+    set reply_id = #{replyId,jdbcType=VARCHAR},
+      cs_name = #{csName,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      fb_id = #{fbId,jdbcType=VARCHAR},
+      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

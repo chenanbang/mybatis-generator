@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cab.usercenter.mapper.PlayerFeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.cab.usercenter.entity.PlayerFeedback">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="fb_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="client_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_source" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="message" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="created_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updated_at" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="reserved_field1" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserved_field2" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="reserved_field3" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fb_id, user_id, client_id, username, user_source, status, message, created_at, 
+    updated_at, reserved_field1, reserved_field2, reserved_field3
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_player_feedback_kbapp
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_player_feedback_kbapp
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cab.usercenter.entity.PlayerFeedback">
+    insert into sys_player_feedback_kbapp (id, fb_id, user_id, 
+      client_id, username, user_source, 
+      status, message, created_at, 
+      updated_at, reserved_field1, reserved_field2, 
+      reserved_field3)
+    values (#{id,jdbcType=BIGINT}, #{fbId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{clientId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userSource,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{message,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{reservedField1,jdbcType=VARCHAR}, #{reservedField2,jdbcType=VARCHAR}, 
+      #{reservedField3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cab.usercenter.entity.PlayerFeedback">
+    insert into sys_player_feedback_kbapp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fbId != null">
+        fb_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="clientId != null">
+        client_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userSource != null">
+        user_source,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="reservedField1 != null">
+        reserved_field1,
+      </if>
+      <if test="reservedField2 != null">
+        reserved_field2,
+      </if>
+      <if test="reservedField3 != null">
+        reserved_field3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fbId != null">
+        #{fbId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null">
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userSource != null">
+        #{userSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservedField1 != null">
+        #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null">
+        #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null">
+        #{reservedField3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cab.usercenter.entity.PlayerFeedback">
+    update sys_player_feedback_kbapp
+    <set>
+      <if test="fbId != null">
+        fb_id = #{fbId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null">
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userSource != null">
+        user_source = #{userSource,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservedField1 != null">
+        reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField2 != null">
+        reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      </if>
+      <if test="reservedField3 != null">
+        reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cab.usercenter.entity.PlayerFeedback">
+    update sys_player_feedback_kbapp
+    set fb_id = #{fbId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      client_id = #{clientId,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      user_source = #{userSource,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      message = #{message,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
+      reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
+      reserved_field3 = #{reservedField3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
