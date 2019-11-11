@@ -25,16 +25,16 @@
   <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_player_feedback_kbapp
+    from ${tbName}
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteById" parameterType="java.lang.Long">
-    delete from sys_player_feedback_kbapp
+    delete from ${tbName}
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
   <insert id="insert" parameterType="com.cab.usercenter.entity.PlayerFeedback">
-    insert into sys_player_feedback_kbapp
+    insert into ${tbName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="fbId != null and fbId != ''">
         fb_id,
@@ -113,42 +113,42 @@
     </trim>
   </insert>
   <update id="updateById" parameterType="com.cab.usercenter.entity.PlayerFeedback">
-    update sys_player_feedback_kbapp
+    update ${tbName}
     <set>
-      <if test="fbId != null">
+      <if test="fbId != null and fbId != ''">
         fb_id = #{fbId,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
+      <if test="userId != null and userId != ''">
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="clientId != null">
+      <if test="clientId != null and clientId != ''">
         client_id = #{clientId,jdbcType=VARCHAR},
       </if>
-      <if test="username != null">
+      <if test="username != null and username != ''">
         username = #{username,jdbcType=VARCHAR},
       </if>
-      <if test="userSource != null">
+      <if test="userSource != null and userSource != ''">
         user_source = #{userSource,jdbcType=VARCHAR},
       </if>
-      <if test="status != null">
+      <if test="status != null and status != ''">
         status = #{status,jdbcType=TINYINT},
       </if>
-      <if test="message != null">
+      <if test="message != null and message != ''">
         message = #{message,jdbcType=VARCHAR},
       </if>
-      <if test="createdAt != null">
+      <if test="createdAt != null and createdAt != ''">
         created_at = #{createdAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="updatedAt != null">
+      <if test="updatedAt != null and updatedAt != ''">
         updated_at = #{updatedAt,jdbcType=TIMESTAMP},
       </if>
-      <if test="reservedField1 != null">
+      <if test="reservedField1 != null and reservedField1 != ''">
         reserved_field1 = #{reservedField1,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField2 != null">
+      <if test="reservedField2 != null and reservedField2 != ''">
         reserved_field2 = #{reservedField2,jdbcType=VARCHAR},
       </if>
-      <if test="reservedField3 != null">
+      <if test="reservedField3 != null and reservedField3 != ''">
         reserved_field3 = #{reservedField3,jdbcType=VARCHAR},
       </if>
     </set>

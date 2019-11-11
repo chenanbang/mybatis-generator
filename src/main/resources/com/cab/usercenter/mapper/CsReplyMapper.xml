@@ -22,16 +22,16 @@
   <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_cs_reply_kbapp
+    from ${tbName}
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteById" parameterType="java.lang.Long">
-    delete from sys_cs_reply_kbapp
+    delete from ${tbName}
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
   <insert id="insert" parameterType="com.cab.usercenter.entity.CsReply">
-    insert into sys_cs_reply_kbapp
+    insert into ${tbName}
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="replyId != null and replyId != ''">
         reply_id,
@@ -92,7 +92,7 @@
     </trim>
   </insert>
   <update id="updateById" parameterType="com.cab.usercenter.entity.CsReply">
-    update sys_cs_reply_kbapp
+    update ${tbName}
     <set>
       <if test="replyId != null and replyId != ''">
         reply_id = #{replyId,jdbcType=VARCHAR},
